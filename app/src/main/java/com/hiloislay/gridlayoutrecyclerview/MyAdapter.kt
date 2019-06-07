@@ -8,7 +8,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.hiloislay.gridlayoutrecyclerview.databinding.AdapterTextBinding
 
-class MyAdapter(val context: Context, val words:List<String>) : RecyclerView.Adapter<MyAdapter.ViewHolder>() {
+class MyAdapter(val context: Context, val words: List<String>) : RecyclerView.Adapter<MyAdapter.ViewHolder>() {
 
 
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): ViewHolder {
@@ -21,7 +21,7 @@ class MyAdapter(val context: Context, val words:List<String>) : RecyclerView.Ada
     }
 
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
-        viewHolder.binding.viewModel = AdapterViewModel((words[position]))
+        viewHolder.binding.viewModel = AdapterViewModel("#${words[position]}")
         viewHolder.binding.executePendingBindings()
     }
 
@@ -29,8 +29,6 @@ class MyAdapter(val context: Context, val words:List<String>) : RecyclerView.Ada
 
 
     class AdapterViewModel(val text: String) : ViewModel()
-
-
 
 
 }

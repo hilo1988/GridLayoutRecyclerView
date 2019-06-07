@@ -3,13 +3,14 @@ package com.hiloislay.gridlayoutrecyclerview
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.GridLayoutManager
-import android.util.Log
+import com.google.android.flexbox.FlexboxLayoutManager
 import com.hiloislay.gridlayoutrecyclerview.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityMainBinding
+
+    lateinit var adapter: MyAdapter
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -17,18 +18,8 @@ class MainActivity : AppCompatActivity() {
         binding = DataBindingUtil.inflate(layoutInflater, R.layout.activity_main, null, false)
         setContentView(binding.root)
 
-        binding.recyclerView.layoutManager = GridLayoutManager(this, 9, GridLayoutManager.VERTICAL, false)
-            .also {
-                it.spanSizeLookup = object:GridLayoutManager.SpanSizeLookup() {
-                    override fun getSpanSize(position: Int): Int {
-                        Log.d("word","posision:$position word:${words[position]}")
-                        return  2
-                    }
-                }
-            }
+        binding.recyclerView.layoutManager = FlexboxLayoutManager(this)
         binding.recyclerView.adapter = MyAdapter(this, words)
-
-
 
 
     }
@@ -136,9 +127,6 @@ class MainActivity : AppCompatActivity() {
         "ploidraother",
         "sphouriavae"
     )
-
-
-
 
 
 }
